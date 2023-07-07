@@ -16,8 +16,9 @@ const emptyInputFlds = () => {
   priceInput.value = ""
 }
 
-const resetButton = document.getElementById("reset-yes")
-resetButton.addEventListener("click", emptyInputFlds)
+const resetModalButton = document.getElementById("reset-yes")
+resetModalButton.addEventListener("click", emptyInputFlds)
+const resetButton = document.getElementById("reset")
 
 //Modifica dei prodotti esistenti: col metodo PUT
 if (productID) {
@@ -36,6 +37,34 @@ if (productID) {
       if (res.ok) {
         return res.json()
       } else {
+        let alertBtnDiv = document.getElementById("alert-button")
+        let alertBtn = document.createElement("button")
+        alertBtn.classList.add("btn", "btn-dark", "w-100")
+        alertBtn.setAttribute("type", "button")
+        alertBtn.setAttribute("id", "liveAlertBtn")
+        alertBtn.innerHTML = "Qualcosa è andato storto: premi per scoprire cosa"
+        alertBtnDiv.appendChild(alertBtn)
+
+        const alertPlaceholder = document.getElementById("liveAlertPlaceholder")
+        const appendAlert = () => {
+          const wrapper = document.createElement("div")
+          wrapper.classList.add("bg-dark", "text-white")
+          wrapper.innerHTML = [
+            `<div class="alert alert- alert-dismissible" role="alert">`,
+            `   <div>The page failed because of this error ${res.status} : ${res.statusText}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            "</div>",
+          ].join("")
+
+          alertPlaceholder.append(wrapper)
+        }
+
+        const alertTrigger = document.getElementById("liveAlertBtn")
+        if (alertTrigger) {
+          alertTrigger.addEventListener("click", () => {
+            appendAlert("Nice, you triggered this alert message!", "success")
+          })
+        }
         throw new Error("Errore nel recupero dei dettagli dell'evento")
       }
     })
@@ -76,6 +105,37 @@ if (productID) {
         if (res.ok) {
           location.assign("home.html")
         } else {
+          let alertBtnDiv = document.getElementById("alert-button")
+          let alertBtn = document.createElement("button")
+          alertBtn.classList.add("btn", "btn-dark", "w-100")
+          alertBtn.setAttribute("type", "button")
+          alertBtn.setAttribute("id", "liveAlertBtn")
+          alertBtn.innerHTML =
+            "Qualcosa è andato storto: premi per scoprire cosa"
+          alertBtnDiv.appendChild(alertBtn)
+
+          const alertPlaceholder = document.getElementById(
+            "liveAlertPlaceholder"
+          )
+          const appendAlert = () => {
+            const wrapper = document.createElement("div")
+            wrapper.classList.add("bg-dark", "text-white")
+            wrapper.innerHTML = [
+              `<div class="alert alert- alert-dismissible" role="alert">`,
+              `   <div>The page failed because of this error ${res.status} : ${res.statusText}</div>`,
+              '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+              "</div>",
+            ].join("")
+
+            alertPlaceholder.append(wrapper)
+          }
+
+          const alertTrigger = document.getElementById("liveAlertBtn")
+          if (alertTrigger) {
+            alertTrigger.addEventListener("click", () => {
+              appendAlert("Nice, you triggered this alert message!", "success")
+            })
+          }
           throw new Error("Problema nell'eliminazione del prodotto")
         }
       })
@@ -127,6 +187,34 @@ productForm.addEventListener("submit", function (e) {
         emptyInputFlds()
         location.assign("home.html")
       } else {
+        let alertBtnDiv = document.getElementById("alert-button")
+        let alertBtn = document.createElement("button")
+        alertBtn.classList.add("btn", "btn-dark", "w-100")
+        alertBtn.setAttribute("type", "button")
+        alertBtn.setAttribute("id", "liveAlertBtn")
+        alertBtn.innerHTML = "Qualcosa è andato storto: premi per scoprire cosa"
+        alertBtnDiv.appendChild(alertBtn)
+
+        const alertPlaceholder = document.getElementById("liveAlertPlaceholder")
+        const appendAlert = () => {
+          const wrapper = document.createElement("div")
+          wrapper.classList.add("bg-dark", "text-white")
+          wrapper.innerHTML = [
+            `<div class="alert alert- alert-dismissible" role="alert">`,
+            `   <div>The page failed because of this error ${res.status} : ${res.statusText}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            "</div>",
+          ].join("")
+
+          alertPlaceholder.append(wrapper)
+        }
+
+        const alertTrigger = document.getElementById("liveAlertBtn")
+        if (alertTrigger) {
+          alertTrigger.addEventListener("click", () => {
+            appendAlert("Nice, you triggered this alert message!", "success")
+          })
+        }
         throw new Error("Errore nel salvataggio del prodotto")
       }
     })
