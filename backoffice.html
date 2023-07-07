@@ -49,71 +49,152 @@
         </div>
       </div>
     </nav>
-    <h1 class="text-center my-4">Gotica Shop - Creazione prodotti</h1>
+    <h1 class="text-center my-4">Gotica Shop - Insert new product</h1>
     <div class="container">
       <div class="row justify-content-center g-3">
         <div class="col col-12 col-md-8">
           <form id="product-form">
             <div class="mb-3">
-              <label for="product-name" class="form-label">Nome prodotto</label>
+              <label for="product-name" class="form-label">Product name</label>
               <input
                 type="text"
                 class="form-control"
                 id="product-name"
-                placeholder="Inserire il nome del prodotto"
+                placeholder="Insert product name"
                 required
               />
             </div>
             <div class="mb-3">
               <label for="product-description" class="form-label"
-                >Descrizione prodotto</label
+                >Product description</label
               >
               <input
                 type="text"
                 class="form-control"
                 id="product-description"
-                placeholder="Inserire una descrizione del prodotto"
+                placeholder="Insert product description"
                 required
               />
             </div>
             <div class="mb-3">
               <label for="product-brand" class="form-label"
-                >Marca prodotto</label
+                >Product brand</label
               >
               <input
                 type="text"
                 class="form-control"
                 id="product-brand"
-                placeholder="Inserire la marca del prodotto"
+                placeholder="Insert product brand"
                 required
               />
             </div>
             <div class="mb-3">
-              <label for="product-img" class="form-label"
-                >Immagine del prodotto</label
-              >
+              <label for="product-img" class="form-label">Product image</label>
               <input
                 type="url"
                 class="form-control"
                 id="product-img"
-                placeholder="Inserire un url di un immagine"
+                placeholder="Insert image url"
                 required
               />
             </div>
             <div class="mb-3">
-              <label for="product-price" class="form-label">Prezzo</label>
+              <label for="product-price" class="form-label">Price</label>
               <input
                 type="number"
                 class="form-control"
                 id="product-price"
-                placeholder="Inserire il prezzo del prodotto"
+                placeholder="Insert product price"
                 required
               />
             </div>
-            <button type="submit" class="btn btn-dark" id="myBtn">
-              Salva prodotto
+            <button type="submit" class="btn btn-dark" id="saveBtn">
+              Save product
             </button>
-            <div id="edit-btn" class="d-inline"></div>
+            <div id="delete-btn-div" class="d-inline"></div>
+
+            <!--Modale Delete-->
+            <div
+              class="modal fade"
+              id="deleteModal"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                  <div class="modal-header text-white">
+                    <h1 class="modal-title fs-5">Confirmation</h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-white">
+                    Are you sure you want to delete the product?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-light"
+                      data-bs-dismiss="modal"
+                    >
+                      No
+                    </button>
+                    <button type="button" class="btn btn-light" id="delete-yes">
+                      Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="reset-btn" class="d-inline"></div>
+            <button
+              type="button"
+              id="reset"
+              class="btn btn-outline-dark"
+              data-bs-toggle="modal"
+              data-bs-target="#resetModal"
+            >
+              Reset form
+            </button>
+            <!--Modale Reset-->
+            <div
+              class="modal fade"
+              id="resetModal"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                  <div class="modal-header text-white">
+                    <h1 class="modal-title fs-5">Confirmation</h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-white">
+                    Are you sure you want to reset the form?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-light"
+                      data-bs-dismiss="modal"
+                    >
+                      No
+                    </button>
+                    <button type="button" class="btn btn-light" id="reset-yes">
+                      Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>

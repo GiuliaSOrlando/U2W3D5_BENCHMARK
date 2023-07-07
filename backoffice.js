@@ -2,10 +2,27 @@ const url = "https://striveschool-api.herokuapp.com/api/product/"
 const addressBarContent = new URLSearchParams(location.search)
 const productID = addressBarContent.get("id")
 
+const nameInput = document.getElementById("product-name")
+const descriptionInput = document.getElementById("product-description")
+const brandInput = document.getElementById("product-brand")
+const imgUrlInput = document.getElementById("product-img")
+const priceInput = document.getElementById("product-price")
+
+const resetButton = document.getElementById("reset-yes")
+resetButton.addEventListener("click", function () {
+  console.log("ciao")
+  nameInput.value = ""
+  descriptionInput.value = ""
+  brandInput.value = ""
+  imgUrlInput.value = ""
+  priceInput.value = ""
+})
+
 //Modifica dei prodotti esistenti: col metodo PUT
 if (productID) {
-  document.querySelector("#myBtn").innerText = "Modifica"
-  document.querySelector("h1").innerText = "Gotica Shop - Modifica prodotto"
+  document.querySelector("#saveBtn").innerText = "Edit"
+  document.querySelector("h1").innerText = "Gotica Shop - Edit product"
+  resetButton.classList.add("d-none")
 
   fetch(url + productID, {
     headers: {
@@ -37,11 +54,15 @@ if (productID) {
     .catch((err) => console.log(err))
 
   let deleteButton = document.createElement("button")
-  deleteButton.innerText = "Delete"
-  deleteButton.classList.add("btn", "btn-dark")
-  let editDiv = document.getElementById("edit-btn")
-  editDiv.append(deleteButton)
-  deleteButton.addEventListener("click", function () {
+  deleteButton.classList.add("btn", "btn-outline-dark")
+  deleteButton.setAttribute("id", "deleteBtn")
+  deleteButton.setAttribute("data-bs-toggle", "modal")
+  deleteButton.setAttribute("data-bs-target", "#deleteModal")
+  deleteButton.innerText("Delete")
+  let deleteDiv = document.getElementById("delete-btn-div")
+  deleteDiv.appendChild(deleteButton)
+  let deleteButtonModal = document.getElementById("delete-yes")
+  deleteButtonModal.addEventListener("click", function () {
     fetch(url + productID, {
       method: "DELETE",
       headers: {
@@ -80,14 +101,6 @@ if (productID) {
 const productForm = document.getElementById("product-form")
 productForm.addEventListener("submit", function (e) {
   e.preventDefault()
-  console.log("Raccolgo i dati dal form")
-
-  const nameInput = document.getElementById("product-name")
-  const descriptionInput = document.getElementById("product-description")
-  const brandInput = document.getElementById("product-brand")
-  const imgUrlInput = document.getElementById("product-img")
-  const priceInput = document.getElementById("product-price")
-
   const newProduct = {
     name: nameInput.value,
     description: descriptionInput.value,
@@ -117,7 +130,7 @@ productForm.addEventListener("submit", function (e) {
         descriptionInput.value = ""
         brandInput.value = ""
         imgUrlInput.value = ""
-        priceInput.valeu = ""
+        priceInput.value = ""
         location.assign("home.html")
       } else {
         throw new Error("Errore nel salvataggio del prodotto")
