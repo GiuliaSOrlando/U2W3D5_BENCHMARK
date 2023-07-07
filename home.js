@@ -20,7 +20,7 @@ const getProducts = function () {
       spinnerContainer.classList.add("d-none")
       products.forEach((product) => {
         let newCol = document.createElement("div")
-        newCol.classList.add("col", "col-12", "col-sm-6", "col-md-3")
+        newCol.classList.add("col", "col-12", "col-md-6", "col-lg-4")
         newCol.innerHTML = `
           <div class="card shadow">
               <img
@@ -41,7 +41,8 @@ const getProducts = function () {
                 <p class="card-text fw-bold">
                   ${product.price}€
                 </p>
-                <a href="./backoffice.html?id=${product._id}" class="btn btn-dark">Modifica</a>
+                <a href="./details.html?id=${product._id}" class="btn btn-dark">Read more</a>
+                <a href="./backoffice.html?id=${product._id}" class="btn btn-dark">Edit</a>
               </div>
             </div>
         `
