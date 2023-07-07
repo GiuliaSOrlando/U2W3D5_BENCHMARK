@@ -1,4 +1,4 @@
-const url = "https://striveschool-api.herokuapp.com/api/product"
+const url = "https://striveschool-api.herokuapp.com/api/product/"
 const addressBarContent = new URLSearchParams(location.search)
 const productID = addressBarContent.get("id")
 
@@ -19,14 +19,20 @@ fetch(url + productID, {
     const spinnerContainer = document.getElementById("spinner-container")
     spinnerContainer.classList.add("d-none")
     let newCol = document.createElement("div")
-    newCol.classList.add("col", "col-12", "col-sm-6", "text-center")
+    newCol.classList.add(
+      "col",
+      "col-sm-8",
+      "col-md-6",
+      "col-lg-4",
+      "text-center"
+    )
     newCol.innerHTML = `
           <div class="card shadow">
               <img
                 src="${detail.imageUrl}"
                 class="card-img-top"
                 alt="product image"
-                height="250px"
+                height="500px"
                 style="object-fit:cover"
               />
               <div class="card-body ">

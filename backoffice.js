@@ -8,15 +8,16 @@ const brandInput = document.getElementById("product-brand")
 const imgUrlInput = document.getElementById("product-img")
 const priceInput = document.getElementById("product-price")
 
-const resetButton = document.getElementById("reset-yes")
-resetButton.addEventListener("click", function () {
-  console.log("ciao")
+const emptyInputFlds = () => {
   nameInput.value = ""
   descriptionInput.value = ""
   brandInput.value = ""
   imgUrlInput.value = ""
   priceInput.value = ""
-})
+}
+
+const resetButton = document.getElementById("reset-yes")
+resetButton.addEventListener("click", emptyInputFlds)
 
 //Modifica dei prodotti esistenti: col metodo PUT
 if (productID) {
@@ -55,12 +56,13 @@ if (productID) {
 
   let deleteButton = document.createElement("button")
   deleteButton.classList.add("btn", "btn-outline-dark")
+  deleteButton.innerText = "Delete"
   deleteButton.setAttribute("id", "deleteBtn")
   deleteButton.setAttribute("data-bs-toggle", "modal")
   deleteButton.setAttribute("data-bs-target", "#deleteModal")
-  deleteButton.innerText("Delete")
   let deleteDiv = document.getElementById("delete-btn-div")
   deleteDiv.appendChild(deleteButton)
+
   let deleteButtonModal = document.getElementById("delete-yes")
   deleteButtonModal.addEventListener("click", function () {
     fetch(url + productID, {
@@ -72,7 +74,7 @@ if (productID) {
     })
       .then((res) => {
         if (res.ok) {
-          //location.assign("home.html")
+          location.assign("home.html")
         } else {
           throw new Error("Problema nell'eliminazione del prodotto")
         }
@@ -84,11 +86,7 @@ if (productID) {
         const imgUrlInput = document.getElementById("product-img")
         const priceInput = document.getElementById("product-price")
 
-        nameInput.value = ""
-        descriptionInput.value = ""
-        brandInput.value = ""
-        imgUrlInput.value = ""
-        priceInput.value = ""
+        emptyInputFlds()
       })
       .catch((err) => {
         console.log(err)
@@ -126,11 +124,7 @@ productForm.addEventListener("submit", function (e) {
   })
     .then((res) => {
       if (res.ok) {
-        nameInput.value = ""
-        descriptionInput.value = ""
-        brandInput.value = ""
-        imgUrlInput.value = ""
-        priceInput.value = ""
+        emptyInputFlds()
         location.assign("home.html")
       } else {
         throw new Error("Errore nel salvataggio del prodotto")

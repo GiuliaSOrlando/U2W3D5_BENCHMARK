@@ -111,44 +111,6 @@
             <button type="submit" class="btn btn-dark" id="saveBtn">
               Save product
             </button>
-            <div id="delete-btn-div" class="d-inline"></div>
-
-            <!--Modale Delete-->
-            <div
-              class="modal fade"
-              id="deleteModal"
-              tabindex="-1"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content bg-dark">
-                  <div class="modal-header text-white">
-                    <h1 class="modal-title fs-5">Confirmation</h1>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body text-white">
-                    Are you sure you want to delete the product?
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-outline-light"
-                      data-bs-dismiss="modal"
-                    >
-                      No
-                    </button>
-                    <button type="button" class="btn btn-light" id="delete-yes">
-                      Yes
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div id="reset-btn" class="d-inline"></div>
             <button
               type="button"
@@ -188,7 +150,12 @@
                     >
                       No
                     </button>
-                    <button type="button" class="btn btn-light" id="reset-yes">
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      id="reset-yes"
+                      data-bs-dismiss="modal"
+                    >
                       Yes
                     </button>
                   </div>
@@ -196,6 +163,49 @@
               </div>
             </div>
           </form>
+          <div id="delete-btn-div" class="d-inline">
+            <!--Modale Delete-->
+            <div
+              class="modal fade"
+              id="deleteModal"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                  <div class="modal-header text-white">
+                    <h1 class="modal-title fs-5">Confirmation</h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-white">
+                    Are you sure you want to delete the form?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-light"
+                      data-bs-dismiss="modal"
+                    >
+                      No
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      id="delete-yes"
+                      data-bs-dismiss="modal"
+                    >
+                      Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
