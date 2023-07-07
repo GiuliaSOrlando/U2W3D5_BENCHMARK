@@ -22,13 +22,15 @@ const getProducts = function () {
         let newCol = document.createElement("div")
         newCol.classList.add("col", "col-12", "col-sm-6", "col-md-3")
         newCol.innerHTML = `
-          <div class="card">
+          <div class="card shadow">
               <img
-                src="${product.image}"
+                src="${product.imageUrl}"
                 class="card-img-top"
                 alt="product image"
+                height="250px"
+                style="object-fit:cover"
               />
-              <div class="card-body">
+              <div class="card-body ">
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">
                   ${product.description}
@@ -39,7 +41,7 @@ const getProducts = function () {
                 <p class="card-text fw-bold">
                   ${product.price}€
                 </p>
-                <a href="./detail.html?id=${product._id}" class="btn btn-primary">Scopri di più</a>
+                <a href="./backoffice.html?id=${product._id}" class="btn btn-dark">Modifica</a>
               </div>
             </div>
         `

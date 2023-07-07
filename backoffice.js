@@ -2,6 +2,35 @@ const url = "https://striveschool-api.herokuapp.com/api/product/"
 const addressBarContent = new URLSearchParams(location.search)
 const productID = addressBarContent.get("id")
 
+//Modifica dei prodotti esistenti: col metodo PUT
+if (productID) {
+  document.querySelector("#myBtn").innerText = "Modifica"
+  document.querySelector("h1").innerText = "Gotica Shop - Modifica prodotto"
+
+  fetch(url + productID)
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw new Error("Errore nel recupero dei dettagli dell'evento")
+      }
+    })
+    .then((edit) => {
+      const nameInput = document.getElementById("product-name")
+      const descriptionInput = document.getElementById("product-description")
+      const brandInput = document.getElementById("product-brand")
+      const imgUrlInput = document.getElementById("product-img")
+      const priceInput = document.getElementById("product-price")
+
+      nameInput.value = edit.name
+      descriptionInput.value = edit.description
+      brandInput.value = edit.brand
+      imgUrlInput.value = edit.imageUrl
+      priceInput.value = edit.price
+    })
+    .catch((err) => console.log(err))
+}
+
 //Creazione dei prodotti: col metodo POST
 
 const productForm = document.getElementById("product-form")
@@ -19,18 +48,18 @@ productForm.addEventListener("submit", function (e) {
     name: nameInput.value,
     description: descriptionInput.value,
     brand: brandInput.value,
-    image: imgUrlInput.value,
+    imageUrl: imgUrlInput.value,
     price: priceInput.value,
   }
 
   console.log(newProduct)
 
-  //let urlToUse = productID ? url + productID : url
+  let urlToUse = productID ? url + productID : url
 
-  //let methodToUse = productID ? "PUT" : "POST"
+  let methodToUse = productID ? "PUT" : "POST"
 
-  fetch(url, {
-    method: "POST",
+  fetch(urlToUse, {
+    method: methodToUse,
     body: JSON.stringify(newProduct),
     headers: {
       Authorization:
