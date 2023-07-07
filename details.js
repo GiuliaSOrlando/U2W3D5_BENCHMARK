@@ -2,7 +2,7 @@ const url = "https://striveschool-api.herokuapp.com/api/product"
 const addressBarContent = new URLSearchParams(location.search)
 const productID = addressBarContent.get("id")
 
-fetch(URL + productID, {
+fetch(url + productID, {
   headers: {
     Authorization:
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGE3ODlmYmRhNTNjMTAwMTRhOTY4ZjEiLCJpYXQiOjE2ODg3MDE0MzUsImV4cCI6MTY4OTkxMTAzNX0.dI1mQ9GDOs4meV8Q4NhkAnIhuifeXJ67H-L26vlmnIk",
